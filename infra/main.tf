@@ -5,7 +5,6 @@ module "lambda_function" {
   docker_file_name   = "Dockerfile.prod"
   aws_account_id     = "027075156904"
   aws_region         = "us-east-1"
-  aws_profile        = "default"
 
   local_image_name         = "lambda_api"
   aws_function_name        = "apifunctionlambda"
