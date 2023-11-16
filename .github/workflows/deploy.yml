@@ -14,12 +14,13 @@ jobs:
     name: "terraform plan dev"
     runs-on: ubuntu-latest
     env:
+      TF_WORKING_DIR: 'infra'
       TF_VAR_api_stage: dev
 
     defaults:
       run:
         shell: bash
-        working-directory: 'infra'
+        working-directory: ${{ env.TF_WORKING_DIR }}
 
     steps:
       - name: "Checkout"
