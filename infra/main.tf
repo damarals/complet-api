@@ -8,7 +8,7 @@ module "lambda_function" {
 
   local_image_name         = "lambda_api"
   aws_function_name        = "apifunctionlambda"
-  aws_function_description = "This contains a FastAPI lambda Rest API"
+  aws_function_description = "FastAPI lambda Rest API"
   api_name                 = "completapi"
   api_stage                = "dev"
 

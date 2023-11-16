@@ -34,6 +34,7 @@ resource "null_resource" "ecr_image" {
            docker push ${var.aws_account_id}.dkr.ecr.${var.aws_region}.amazonaws.com/${aws_ecr_repository.this.name}:${local.version}
        EOF
     working_dir = var.local_dir_to_build
+    # interpreter = ["pwsh", "-Command"] # only needed for Windows
   }
 
   depends_on = [ aws_ecr_repository.this ]
