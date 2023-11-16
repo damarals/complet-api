@@ -2,8 +2,7 @@
 terraform {
   required_providers {
     aws = { 
-      source = "hashicorp/aws", 
-      version = "5.25.0" 
+      source = "hashicorp/aws"
     }
   }
 }
@@ -11,8 +10,6 @@ terraform {
 provider "aws" {
   region  = var.aws_region
   profile = var.aws_profile
-
-  shared_credentials_files = ["~/.aws/credentials"]
 }
 
 # --- ECR Repository ---
