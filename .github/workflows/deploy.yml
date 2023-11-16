@@ -31,11 +31,12 @@ jobs:
         with:
           terraform_version: 1.6.4
 
+      - name: "list files"
+        run: ls
+
       - name: "Terraform fmt"
         id: fmt
-        run: |
-        ls
-        terraform fmt -check
+        run: terraform fmt -check
 
       - name: "Terraform init"
         id: init
