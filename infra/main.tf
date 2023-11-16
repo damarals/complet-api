@@ -17,18 +17,6 @@ module "lambda_function" {
   }
 }
 
-# --- Basic Setup ---
-terraform {
-  required_providers {
-    aws = { 
-      source = "hashicorp/aws"
-    }
-  }
-
-  backend "s3" {}
-}
-
-
 output "base_url" {
   value = module.lambda_function.base_url
 }
