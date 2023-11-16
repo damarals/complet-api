@@ -31,9 +31,6 @@ jobs:
         with:
           terraform_version: 1.6.4
 
-      - name: "list files"
-        run: ls
-
       - name: "Terraform fmt"
         id: fmt
         run: terraform fmt -check

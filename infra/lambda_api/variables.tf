@@ -65,5 +65,6 @@ variable "aws_region" {
 
 variable "aws_profile" {
   description = "The AWS profile name to use"
+  default     = "default"
   type        = string
 }
