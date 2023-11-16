@@ -25,6 +25,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Create AWS credentials file
+        run: |
+          mkdir -p ~/.aws
+          echo "[default]" > ~/.aws/credentials
+          echo "aws_access_key_id=${{ secrets.AWS_ACCESS_KEY_ID }}" >> ~/.aws/credentials
+          echo "aws_secret_access_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> ~/.aws/credentials
+          chmod 600 ~/.aws/credentials
+
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
 
