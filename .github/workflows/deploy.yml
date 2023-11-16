@@ -50,6 +50,10 @@ jobs:
         id: validate
         run: terraform validate -no-color
 
+      - name: "Terraform plan"
+        id: plandev
+        run: terraform plan -no-color
+
       - name: "Terraform apply"
         id: applydev
         run: terraform apply -auto-approve
