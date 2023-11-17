@@ -21,7 +21,7 @@ variable "aws_account_id" {
 variable "stage" {
   description = "The stage to use when deploying the API gateway resources."
   type        = string
-  default = "staging"
+  default     = "staging"
 }
 
 variable "docker_file_name" {

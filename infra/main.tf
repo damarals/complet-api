@@ -22,6 +22,6 @@ module "lambda_stack" {
   docker_file_name   = "Dockerfile.prod"
   aws_account_id     = "027075156904"
 
-  local_image_name         = "lambda_api"
-  aws_function_name        = "lambda_api"
+  local_image_name  = "lambda_api"
+  aws_function_name = "lambda_api"
 }

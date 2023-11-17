@@ -2,15 +2,15 @@ terraform {
   required_version = "1.6.3"
 
   required_providers {
-    aws = { 
-      source = "hashicorp/aws"
+    aws = {
+      source  = "hashicorp/aws"
       version = "5.26.0"
     }
   }
 }
 
 provider "aws" {
-  region  = "us-east-1"
+  region = "us-east-1"
 }
 
 data "aws_caller_identity" "current" {}
@@ -36,7 +36,7 @@ resource "aws_s3_bucket_acl" "remote_state" {
   bucket = aws_s3_bucket.remote_state.id
   acl    = "private"
 
-  depends_on = [ aws_s3_bucket_ownership_controls.remote_state ]
+  depends_on = [aws_s3_bucket_ownership_controls.remote_state]
 }
 
 resource "aws_s3_bucket_versioning" "versioning_remote_state" {
