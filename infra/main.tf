@@ -24,4 +24,7 @@ module "lambda_stack" {
 
   local_image_name  = "lambda_api"
   aws_function_name = "lambda_api"
+
+  stage                                = var.stage
+  lambda_runtime_environment_variables = var.lambda_runtime_environment_variables
 }
