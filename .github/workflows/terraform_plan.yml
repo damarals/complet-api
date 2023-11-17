@@ -13,7 +13,7 @@ env:
 jobs:
   plan-staging:
     name: "terraform plan for staging"
-    if: github.head_ref == 'staging'
+    if: ${{ github.head_ref == 'staging' }}
     runs-on: ubuntu-latest
     env:
       TF_WORKING_DIR: 'infra'
@@ -109,7 +109,7 @@ jobs:
 
   plan-prod:
     name: "terraform plan for prod"
-    if: github.head_ref == 'main'
+    if: ${{ github.head_ref == 'main' }}
     runs-on: ubuntu-latest
     env:
       TF_WORKING_DIR: 'infra'

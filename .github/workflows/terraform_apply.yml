@@ -13,7 +13,7 @@ env:
 jobs:
   apply-staging:
     name: 'terraform apply staging'
-    if: github.base_ref == 'staging'
+    if: ${{ github.ref == 'staging' }}
     runs-on: ubuntu-latest
     env:
       TF_WORKING_DIR: 'infra'
@@ -49,7 +49,7 @@ jobs:
 
   apply-prod:
     name: 'terraform apply prod'
-    if: github.base_ref == 'main'
+    if: ${{ github.ref == 'main' }}
     runs-on: ubuntu-latest
     env:
       TF_WORKING_DIR: 'infra'
