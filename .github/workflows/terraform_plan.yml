@@ -3,7 +3,7 @@ name: "Create terraform plan of the API infrastructure"
 on: 
   pull_request:
     branches:
-      - dev
+      - development
       - staging
 
 env: 
