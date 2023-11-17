@@ -13,7 +13,7 @@ env:
 jobs:
   plan-staging:
     name: "terraform plan for staging"
-    if: ${{ github.head_ref == 'staging' }}
+    # if: ${{ github.head_ref == 'staging' }}
     runs-on: ubuntu-latest
     env:
       TF_WORKING_DIR: 'infra'
