@@ -12,7 +12,8 @@ terraform {
 }
 
 provider "aws" {
-  region = "us-east-1"
+  region  = var.aws_region
+  profile = var.aws_profile
 }
 
 module "lambda_stack" {
@@ -22,9 +23,10 @@ module "lambda_stack" {
   docker_file_name   = "Dockerfile.prod"
   aws_account_id     = "027075156904"
 
-  local_image_name  = "lambda_api"
+  local_image_name  = "lambda_api_image"
   aws_function_name = "lambda_api"
 
   stage                                = var.stage
   lambda_runtime_environment_variables = var.lambda_runtime_environment_variables
+  worker_so                            = var.worker_so
 }

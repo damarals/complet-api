@@ -1,6 +1,6 @@
 resource "aws_api_gateway_rest_api" "this" {
   name        = "${local.resource_name_prefix}_api_gateway"
-  description = "API Gateway for ${var.aws_function_name} API in ${var.stage} environment"
+  description = "API Gateway for ${var.aws_function_name} API project in ${var.stage} environment"
 }
 
 resource "aws_api_gateway_resource" "this" {

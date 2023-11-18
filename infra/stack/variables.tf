@@ -21,7 +21,7 @@ variable "aws_account_id" {
 variable "stage" {
   description = "The stage to use when deploying the API gateway resources."
   type        = string
-  default     = "staging"
+  default     = "local"
 }
 
 variable "docker_file_name" {
@@ -34,12 +34,18 @@ variable "lambda_runtime_environment_variables" {
   description = "The runtime environment variables to include in the Lambda"
   type        = map(any)
   default = {
-    API_STAGE = "staging"
+    API_STAGE = "local"
   }
 }
 
 variable "aws_region" {
   description = "The AWS region to create resources in."
-  default     = "us-east-1"
   type        = string
+  default     = "us-east-1"
+}
+
+variable "worker_so" {
+  description = "The worker operating system."
+  type        = string
+  default     = "windows"
 }
