@@ -67,15 +67,15 @@ jobs:
 
             // 2. Prepare format of the comment
             const output = `
-            ### Terraform Staging Environment Planner
+            ## Terraform Staging Environment Planner
             
-            ##### :art: Terraform Format and Style 
+            ### :art: Terraform Format and Style 
             Code formatted with status of \`${{ steps.fmt.outcome }}\`
             
-            ##### :tada: Terraform Initialization
+            ### :tada: Terraform Initialization
             Terraform initialized with status of \`${{ steps.init.outcome }}\`
             
-            ##### :white_check_mark: Terraform Validation \`${{ steps.validate.outcome }}\`
+            ### :white_check_mark: Terraform Validation \`${{ steps.validate.outcome }}\`
             The terraform code has been validated with the status of \`${{ steps.validate.outputs.stdout }}\`.
             For more information on the validation output, please expand the details below.
 
@@ -86,7 +86,7 @@ jobs:
               \`\`\`
             </details>
 
-            #### :memo: Terraform Plan \`${{ steps.plan.outcome }}\`
+            ### :memo: Terraform Plan \`${{ steps.plan.outcome }}\`
             The terraform plan has been generated with the status of \`${{ steps.plan.outputs.stdout }}\`.
             For more information on the plan output, please expand the details below.
 
