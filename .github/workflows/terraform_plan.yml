@@ -79,12 +79,11 @@ jobs:
             The terraform code has been validated with the status of \`${{ steps.validate.outputs.stdout }}\` .
             For more information on the validation output, please expand the details below.
 
-            <details>
-              <summary>Validation Output</summary>
+            <details><summary>Validation Output</summary>
 
-              \`\`\`\n
-                ${{ steps.validate.outputs.stdout }}
-              \`\`\`
+            \`\`\`\n
+            ${{ steps.validate.outputs.stdout }}
+            \`\`\`
 
             </details>
 
@@ -92,12 +91,11 @@ jobs:
             The terraform plan has been generated with the status of \`${{ steps.plan.outputs.stdout }}\`.
             For more information on the plan output, please expand the details below.
 
-            <details>
-              <summary>Show Plan</summary>
+            <details><summary>Show Plan</summary>
 
-              \`\`\`\n
-                ${process.env.PLAN}
-              \`\`\`
+            \`\`\`\n
+            ${process.env.PLAN}
+            \`\`\`
 
             </details>
 
