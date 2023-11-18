@@ -85,7 +85,7 @@ jobs:
             </details>
             
             ### :memo: Terraform Plan
-            The terraform plan has been generated with the status of \`${{ steps.plan.outputs.outcome }}\`.
+            The terraform plan has been generated with the status of \`${{ steps.plan.outcome }}\`.
             For more information on the plan output, please expand the details below.
             <details><summary>Show Plan</summary>
 
