@@ -76,7 +76,7 @@ jobs:
             Terraform initialized with status of \`${{ steps.init.outcome }}\`
             
             ### :white_check_mark: Terraform Validation \`${{ steps.validate.outcome }}\`
-            The terraform code has been validated with the status of \`${{ steps.validate.outputs.stdout }}\`.
+            The terraform code has been validated with the status of \`${{ steps.validate.outputs.stdout }}\` .
             For more information on the validation output, please expand the details below.
 
             <details>
