@@ -81,9 +81,11 @@ jobs:
 
             <details>
               <summary>Validation Output</summary>
-              \`\`\`
+
+              \`\`\`\n
                 ${{ steps.validate.outputs.stdout }}
               \`\`\`
+
             </details>
 
             ### :memo: Terraform Plan \`${{ steps.plan.outcome }}\`
@@ -92,9 +94,11 @@ jobs:
 
             <details>
               <summary>Show Plan</summary>
-              \`\`\`
+
+              \`\`\`\n
                 ${process.env.PLAN}
               \`\`\`
+
             </details>
 
             *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Workflow: \`${{ github.workflow }}\`*`;
