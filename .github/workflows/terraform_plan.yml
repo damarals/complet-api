@@ -74,7 +74,7 @@ jobs:
             Terraform initialized with status of \`${{ steps.init.outcome }}\` .
             
             ### :white_check_mark: Terraform Validation
-            The terraform code has been validated with the status of \`${{ steps.validate.outcome }}\`.
+            The terraform code has been validated with the status of \`${{ steps.validate.outcome }}\` .
             For more information on the validation output, please expand the details below.
             <details><summary>Validation Output</summary>
 
@@ -85,7 +85,7 @@ jobs:
             </details>
             
             ### :memo: Terraform Plan
-            The terraform plan has been generated with the status of \`${{ steps.plan.outcome }}\`.
+            The terraform plan has been generated with the status of \`${{ steps.plan.outcome }}\` .
             For more information on the plan output, please expand the details below.
             <details><summary>Show Plan</summary>
 
