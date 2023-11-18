@@ -158,7 +158,7 @@ jobs:
           PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
+                    script: |
             // 1. Retrieve existing bot comments for the PR
             const { data: comments } = await github.rest.issues.listComments({
               owner: context.repo.owner,
@@ -170,9 +170,16 @@ jobs:
             })
 
             // 2. Prepare format of the comment
-            const output = `#### Terraform Format and Style 🖌\`${{ steps.fmt.outcome }}\`
-            #### Terraform Initialization ⚙️\`${{ steps.init.outcome }}\`
-            #### Terraform Validation 🤖\`${{ steps.validate.outcome }}\`
+            const output = `## Terraform Production Environment Planner
+            ### :art: Terraform Format and Style 
+            Code formatted with status of \`${{ steps.fmt.outcome }}\` .
+            
+            ### :tada: Terraform Initialization
+            Terraform initialized with status of \`${{ steps.init.outcome }}\` .
+            
+            ### :white_check_mark: Terraform Validation
+            The terraform code has been validated with the status of \`${{ steps.validate.outcome }}\` .
+            For more information on the validation output, please expand the details below.
             <details><summary>Validation Output</summary>
 
             \`\`\`\n
@@ -180,9 +187,10 @@ jobs:
             \`\`\`
 
             </details>
-
-            #### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
-
+            
+            ### :memo: Terraform Plan
+            The terraform plan has been generated with the status of \`${{ steps.plan.outcome }}\` .
+            For more information on the plan output, please expand the details below.
             <details><summary>Show Plan</summary>
 
             \`\`\`\n
@@ -191,7 +199,7 @@ jobs:
 
             </details>
 
-            *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Working Directory: \`${{ env.tf_actions_working_dir }}\`, Workflow: \`${{ github.workflow }}\`*`;
+            *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Workflow: \`${{ github.workflow }}\`*`;
 
             // 3. If we have a comment, update it, otherwise create a new one
             if (botComment) {
