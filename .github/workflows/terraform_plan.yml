@@ -71,8 +71,8 @@ jobs:
             Code formatted with status of \`${{ steps.fmt.outcome }}\`
             ### :tada: Terraform Initialization
             Terraform initialized with status of \`${{ steps.init.outcome }}\`
-            ### :white_check_mark: Terraform Validation \`${{ steps.validate.outcome }}\`
-            The terraform code has been validated with the status of \`${{ steps.validate.outputs.stdout }}\` .
+            ### :white_check_mark: Terraform Validation
+            The terraform code has been validated with the status of \`${{ steps.validate.outcome }}\` .
             For more information on the validation output, please expand the details below.
             <details><summary>Validation Output</summary>
 
@@ -81,11 +81,9 @@ jobs:
             \`\`\`
 
             </details>
-            ### :memo: Terraform Plan \`${{ steps.plan.outcome }}\`
-
-            The terraform plan has been generated with the status of \`${{ steps.plan.outputs.stdout }}\`.
+            ### :memo: Terraform Plan
+            The terraform plan has been generated with the status of \`${{ steps.plan.outputs.outcome }}\`.
             For more information on the plan output, please expand the details below.
-
             <details><summary>Show Plan</summary>
 
             \`\`\`\n
@@ -93,7 +91,6 @@ jobs:
             \`\`\`
 
             </details>
-            
             *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Workflow: \`${{ github.workflow }}\`*`;
 
             // 3. If we have a comment, update it, otherwise create a new one
