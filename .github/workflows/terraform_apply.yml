@@ -49,7 +49,7 @@ jobs:
 
   apply-prod:
     name: 'terraform apply prod'
-    if: ${{ github.ref == 'main' }}
+    if: ${{ github.ref_name == 'main' }}
     runs-on: ubuntu-latest
     env:
       TF_WORKING_DIR: 'infra'
