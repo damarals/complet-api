@@ -4,12 +4,6 @@ variable "aws_region" {
   default     = "us-east-1"
 }
 
-variable "aws_profile" {
-  description = "The AWS profile to use to execute the commands"
-  type        = string
-  default     = "default"
-}
-
 variable "stage" {
   description = "The stage to use when deploying the aws resources."
   type        = string
