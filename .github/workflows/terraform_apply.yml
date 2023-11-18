@@ -13,7 +13,7 @@ env:
 jobs:
   apply-staging:
     name: 'terraform apply staging'
-    if: ${{ github.ref == 'staging' }}
+    # if: ${{ github.ref == 'staging' }}
     runs-on: ubuntu-latest
     env:
       TF_WORKING_DIR: 'infra'
@@ -26,6 +26,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
+      - name: Print GitHub context
+        run: echo ${{ toJson(github) }}
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
