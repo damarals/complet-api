@@ -8,11 +8,6 @@ variable "aws_function_name" {
   type        = string
 }
 
-variable "aws_function_description" {
-  description = "The description of the Lambda function."
-  type        = string
-}
-
 variable "local_dir_to_build" {
   description = "The path to the local directory that needs to get build."
   type        = string
@@ -23,27 +18,10 @@ variable "aws_account_id" {
   type        = string
 }
 
-variable "api_stage" {
+variable "stage" {
   description = "The stage to use when deploying the API gateway resources."
   type        = string
-}
-
-variable "api_name" {
-  description = "The name of the API gateway."
-  type        = string
-}
-
-# Default vars
-variable "lambda_timeout" {
-  description = "Max execution time of Lambda (in seconds). Max: 900"
-  type        = number
-  default     = 900
-}
-
-variable "memory_size" {
-  description = "The memory size of the Lambda"
-  type        = number
-  default     = 128
+  default     = "local"
 }
 
 variable "docker_file_name" {
@@ -55,16 +33,19 @@ variable "docker_file_name" {
 variable "lambda_runtime_environment_variables" {
   description = "The runtime environment variables to include in the Lambda"
   type        = map(any)
+  default = {
+    API_STAGE = "local"
+  }
 }
 
 variable "aws_region" {
   description = "The AWS region to create resources in."
-  default     = "us-east-1"
   type        = string
+  default     = "us-east-1"
 }
 
-variable "aws_profile" {
-  description = "The AWS profile name to use"
-  default     = "default"
+variable "worker_so" {
+  description = "The worker operating system."
   type        = string
+  default     = "windows"
 }

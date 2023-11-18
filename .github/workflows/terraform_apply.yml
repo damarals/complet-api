@@ -1,0 +1,84 @@
+name: Apply terraform resources of the API infrastructure
+
+on:
+  push:
+    branches:
+      - main # prod
+      - staging
+
+env:
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+jobs:
+  apply-staging:
+    name: 'terraform apply staging'
+    if: ${{ github.ref == 'staging' }}
+    runs-on: ubuntu-latest
+    env:
+      TF_WORKING_DIR: 'infra'
+
+    defaults:
+      run:
+        shell: bash
+        working-directory: ${{ env.TF_WORKING_DIR }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.6.3
+
+      - name: Terraform fmt
+        id: fmt
+        run: terraform fmt -check
+
+      - name: Terraform Init
+        id: init
+        run: terraform init -backend=true -backend-config="config/staging/backend.hcl"
+
+      - name: Terraform Validate
+        id: validate
+        run: terraform validate -no-color
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve -var-file="config/staging/terraform.tfvars"
+
+  apply-prod:
+    name: 'terraform apply prod'
+    if: ${{ github.ref == 'main' }}
+    runs-on: ubuntu-latest
+    env:
+      TF_WORKING_DIR: 'infra'
+
+    defaults:
+      run:
+        shell: bash
+        working-directory: ${{ env.TF_WORKING_DIR }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.6.3
+
+      - name: Terraform fmt
+        id: fmt
+        run: terraform fmt -check
+
+      - name: Terraform Init
+        id: init
+        run: terraform init -backend=true -backend-config="config/prod/backend.hcl"
+
+      - name: Terraform Validate
+        id: validate
+        run: terraform validate -no-color
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve -var-file="config/prod/terraform.tfvars"
