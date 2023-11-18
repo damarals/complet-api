@@ -3,7 +3,7 @@ name: "Create terraform plan of the API infrastructure"
 on: 
   pull_request:
     branches:
-      - development
+      - main # prod
       - staging
 
 env: 
@@ -13,7 +13,7 @@ env:
 jobs:
   plan-staging:
     name: "terraform plan for staging"
-    # if: ${{ github.head_ref == 'staging' }}
+    if: ${{ github.base_ref == 'staging' }}
     runs-on: ubuntu-latest
     env:
       TF_WORKING_DIR: 'infra'
@@ -24,9 +24,6 @@ jobs:
         working-directory: ${{ env.TF_WORKING_DIR }}
 
     steps:
-      - name: "print github context"
-        run: echo "${{ toJson(github) }}"
-        
       - name: "Checkout"
         uses: actions/checkout@v3
 
@@ -112,7 +109,7 @@ jobs:
 
   plan-prod:
     name: "terraform plan for prod"
-    if: ${{ github.head_ref == 'main' }}
+    if: ${{ github.base_ref == 'main' }}
     runs-on: ubuntu-latest
     env:
       TF_WORKING_DIR: 'infra'
