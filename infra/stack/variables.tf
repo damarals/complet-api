@@ -1,10 +1,5 @@
-variable "local_image_name" {
-  description = "The name of the local docker image that will be build."
-  type        = string
-}
-
-variable "aws_function_name" {
-  description = "The name of the Lambda function."
+variable "project_name" {
+  description = "The name of the project."
   type        = string
 }
 
@@ -18,34 +13,56 @@ variable "aws_account_id" {
   type        = string
 }
 
-variable "stage" {
-  description = "The stage to use when deploying the API gateway resources."
+variable "env" {
+  description = "The environment to use when deploying the API gateway resources."
   type        = string
-  default     = "local"
+  default     = "dev"
 }
 
 variable "docker_file_name" {
   description = "The name of the local Dockerfile to build."
-  type        = string
-  default     = "Dockerfile"
+  type = object({
+    dev     = string
+    staging = string
+    prod    = string
+  })
+  default = {
+    dev     = "Dockerfile.prod", # Dockerfile is used for local development
+    staging = "Dockerfile.prod"
+    prod    = "Dockerfile.prod"
+  }
 }
 
 variable "lambda_runtime_environment_variables" {
   description = "The runtime environment variables to include in the Lambda"
-  type        = map(any)
+  type = object({
+    dev     = map(string)
+    staging = map(string)
+    prod    = map(string)
+  })
   default = {
-    API_STAGE = "local"
+    dev = {
+      API_ENV = "dev"
+    },
+    staging = {
+      API_ENV = "staging"
+    },
+    prod = {
+      API_ENV = "prod"
+    }
   }
-}
-
-variable "aws_region" {
-  description = "The AWS region to create resources in."
-  type        = string
-  default     = "us-east-1"
 }
 
 variable "worker_so" {
   description = "The worker operating system."
-  type        = string
-  default     = "windows"
+  type = object({
+    dev     = string
+    staging = string
+    prod    = string
+  })
+  default = {
+    dev     = "windows",
+    staging = "windows",
+    prod    = "windows"
+  }
 }

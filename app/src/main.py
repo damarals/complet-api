@@ -2,10 +2,10 @@ import os
 from fastapi import FastAPI
 from mangum import Mangum
 
-stage = os.environ.get("API_STAGE")
+env = os.environ.get("API_ENV")
 
 app = FastAPI(
-    root_path = f"/{stage}/" if stage else "",
+    root_path = f"/{env}/" if env else "",
     docs_url = "/api/docs",
     title = "My Awesome FastAPI app",
     description = "This is super fancy, with auto docs and everything!",
