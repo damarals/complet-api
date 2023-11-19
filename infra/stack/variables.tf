@@ -27,7 +27,7 @@ variable "docker_file_name" {
     prod    = string
   })
   default = {
-    dev     = "Dockerfile.prod", # Dockerfile is used for local development
+    dev     = "Dockerfile", # Dockerfile is used for local development
     staging = "Dockerfile.prod"
     prod    = "Dockerfile.prod"
   }
@@ -62,7 +62,7 @@ variable "worker_so" {
   })
   default = {
     dev     = "windows",
-    staging = "windows",
-    prod    = "windows"
+    staging = "linux",
+    prod    = "linux"
   }
 }
