@@ -60,6 +60,16 @@ The complet API uses FastAPI to handle requests and run the spleeter model. The 
   <img src="./.github/assets/architecture-diagram.svg" width="920" height="420" alt="Complet API AWS architecture diagram">
 </h1>
 
+The complet API infrastructure is provisioned on AWS using Terraform. User requests first reach the API Gateway, which handles API versioning - by default requests go to the /v1 stage endpoints.
+
+API Gateway triggers a Lambda function containing the FastAPI application code running in a Docker container stored in ECR. This serverless function handles the API logic and stem extraction using the spleeter model.
+
+Extracted audio stems are uploaded to an S3 bucket for persistent storage. Download URLs for the stems are returned in the API response.
+
+Terraform state is stored remotely in S3, with separate state buckets for each environment (dev, staging, prod). This allows independent infrastructure for each stage following Git branching workflow.
+
+Storing Terraform state remotely enables a consistent view of infrastructure and prevents state duplication. Infrastructure changes can be applied predictably through CI/CD pipelines using the same configured backend.
+
 <!-- TODO: make cotributing section -->
 <!-- ## Contributing -->
 
