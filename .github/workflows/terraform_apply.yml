@@ -38,14 +38,18 @@ jobs:
 
       - name: Terraform Init
         id: init
-        run: terraform init -backend=true -backend-config="config/staging/backend.hcl"
+        run: terraform init
+
+      - name : Terraform workspace
+        id: workspace
+        run: terraform workspace select staging || terraform workspace new staging
 
       - name: Terraform Validate
         id: validate
         run: terraform validate -no-color
 
       - name: Terraform Apply
-        run: terraform apply -auto-approve -var-file="config/staging/terraform.tfvars"
+        run: terraform apply -auto-approve
 
   apply-prod:
     name: 'terraform apply prod'
@@ -74,11 +78,15 @@ jobs:
 
       - name: Terraform Init
         id: init
-        run: terraform init -backend=true -backend-config="config/prod/backend.hcl"
+        run: terraform init
+
+      - name : Terraform workspace
+        id: workspace
+        run: terraform workspace select prod || terraform workspace new prod
 
       - name: Terraform Validate
         id: validate
         run: terraform validate -no-color
 
       - name: Terraform Apply
-        run: terraform apply -auto-approve -var-file="config/prod/terraform.tfvars"
+        run: terraform apply -auto-approve

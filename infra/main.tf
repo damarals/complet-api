@@ -8,24 +8,24 @@ terraform {
     }
   }
 
-  backend "s3" {}
+  backend "s3" {
+    bucket = "terraform-remote-state-027075156904"
+    key    = "terraform.tfstate"
+    region = "us-east-1"
+  }
 }
 
 provider "aws" {
-  region = var.aws_region
+  region = local.aws_region
 }
 
 module "lambda_stack" {
   source = "./stack"
 
   local_dir_to_build = "../app"
-  docker_file_name   = "Dockerfile.prod"
-  aws_account_id     = "027075156904"
+  aws_account_id     = local.aws_account_id
 
-  local_image_name  = "lambda_api_image"
-  aws_function_name = "lambda_api"
+  project_name = "complet" # Complet is the name of the project
 
-  stage                                = var.stage
-  lambda_runtime_environment_variables = var.lambda_runtime_environment_variables
-  worker_so                            = var.worker_so
+  env = local.env
 }

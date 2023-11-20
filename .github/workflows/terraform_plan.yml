@@ -38,7 +38,11 @@ jobs:
 
       - name: "Terraform init"
         id: init
-        run: terraform init -backend=true -backend-config="config/staging/backend.hcl"
+        run: terraform init
+
+      - name : "Terraform workspace"
+        id: workspace
+        run: terraform workspace select staging || terraform workspace new staging
 
       - name: "Terraform validate"
         id: validate
@@ -46,7 +50,7 @@ jobs:
 
       - name: "Terraform plan"
         id: plan
-        run: terraform plan -no-color -var-file="config/staging/terraform.tfvars"
+        run: terraform plan -no-color
         continue-on-error: true
 
       - uses: actions/github-script@v6
@@ -141,7 +145,11 @@ jobs:
 
       - name: "Terraform init"
         id: init
-        run: terraform init -backend=true -backend-config="config/prod/backend.hcl"
+        run: terraform init
+
+      - name : "Terraform workspace"
+        id: workspace
+        run: terraform workspace select prod || terraform workspace new prod
 
       - name: "Terraform validate"
         id: validate
