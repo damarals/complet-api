@@ -19,6 +19,12 @@ variable "env" {
   default     = "dev"
 }
 
+variable "api_version" {
+  description = "The API version to use when deploying the API gateway resources."
+  type        = string
+  default     = "v1"
+}
+
 variable "docker_file_name" {
   description = "The name of the local Dockerfile to build."
   type = object({
