@@ -1,6 +1,10 @@
 resource "aws_api_gateway_rest_api" "this" {
-  name        = "${local.resource_name_prefix}_api_gateway"
-  description = "API Gateway for ${var.aws_function_name} API project in ${var.stage} environment"
+  name        = "${var.project_name}_api_gateway_${var.env}"
+  description = "API Gateway for ${var.project_name} project at ${var.env} environment"
+
+  endpoint_configuration {
+    types = ["REGIONAL"]
+  }
 }
 
 resource "aws_api_gateway_resource" "this" {
@@ -25,9 +29,7 @@ resource "aws_api_gateway_integration" "lambda" {
   type                    = "AWS_PROXY"
   uri                     = aws_lambda_function.this.invoke_arn
 
-  depends_on = [
-    aws_lambda_function.this
-  ]
+  depends_on = [aws_lambda_function.this]
 }
 
 resource "aws_api_gateway_method" "proxy_root" {
@@ -56,5 +58,9 @@ resource "aws_api_gateway_deployment" "this" {
   ]
 
   rest_api_id = aws_api_gateway_rest_api.this.id
-  stage_name  = var.stage
+  stage_name  = var.api_version
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }

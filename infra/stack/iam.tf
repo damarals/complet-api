@@ -10,6 +10,7 @@ data "aws_iam_policy_document" "lambda_assume_role" {
 }
 
 resource "aws_iam_role" "this" {
-  name               = "${local.resource_name_prefix}_lambda_function_role"
+  name               = "${var.project_name}_lambda_function_role_${var.env}"
+  description        = "Lambda function role for ${var.project_name} project at ${var.env} environment"
   assume_role_policy = data.aws_iam_policy_document.lambda_assume_role.json
 }
