@@ -4,9 +4,9 @@ WORKDIR /usr/src/app
 
 COPY requirements.txt .
 
-RUN python3 -m ensurepip
-RUN pip install --no-cache --upgrade pip setuptools
-RUN pip install -r requirements.txt
+RUN python3 -m ensurepip && \
+    pip install --no-cache --upgrade pip setuptools && \
+    pip install -r requirements.txt
 
 ENV MODEL_PATH /model
 ARG MODEL=4stems
