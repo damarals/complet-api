@@ -33,7 +33,7 @@ variable "docker_file_name" {
     prod    = string
   })
   default = {
-    dev     = "Dockerfile", # Dockerfile is used for local development
+    dev     = "Dockerfile.prod", # Dockerfile is used for local development
     staging = "Dockerfile.prod"
     prod    = "Dockerfile.prod"
   }
