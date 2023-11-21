@@ -4,7 +4,8 @@ resource "aws_lambda_function" "this" {
   image_uri     = "${var.aws_account_id}.dkr.ecr.${local.aws_region}.amazonaws.com/${aws_ecr_repository.this.name}:${local.version}"
   package_type  = "Image"
   role          = aws_iam_role.this.arn
-  timeout       = 30
+  timeout       = 60
+  memory_size   = 2048
 
   environment {
     variables = local.lambda_runtime_environment_variables
