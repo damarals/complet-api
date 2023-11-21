@@ -14,8 +14,8 @@ async def find_stem(stem_id: str):
     results = {"Success": f"This is the stem with id: {stem_id}"}
     return results
 
-@router.post("/generate")
-async def generate_stem(youtube_url: str):
+@router.post("/extract")
+async def extract_stem(youtube_url: str):
     video_filename = download_youtube_video(youtube_url)
     audio_filename = convert_to_mp3(video_filename)
 
